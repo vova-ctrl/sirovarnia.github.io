@@ -1,0 +1,150 @@
+<!-- --- catalog.html --- -->
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Сыроварня Cзоновых</title>
+  <link rel="stylesheet" href="css/style.css"/>
+  <link rel="shortcut icon" href="images/logo2.png" type="image/x-icon">
+</head>
+<body>
+  <!-- Уведомление -->
+<div id="toast-container"></div>
+
+  <!-- Шапка (header) -->
+  <header>
+    <div class="logo">
+      <a href="index.html">
+        <img src="images/logo1.png" alt="Логотип">
+      </a>
+    </div>
+    <nav>
+      <a href="index.html">Главная</a>
+      <a href="catalog.html" class="nav-link active">Каталог</a>
+      <a href="about.html">О нас</a>
+      <form id="search-form">
+        <input type="text" id="search-input" placeholder="Поиск по товарам..." />
+        
+      </form>
+      
+      <!-- Ссылки, которые видны только после входа -->
+      <a href="cart.html" id="nav-cart" style="display:none; position: relative;">
+        <span class="icon-cart" style="vertical-align: middle; margin-right: 4px;"></span>
+        <span style="vertical-align: middle;">Корзина</span>
+        <span id="cart-count" class="cart-badge">0</span>
+      </a>
+      <a href="account.html" id="nav-account" style="display:none;">Личный кабинет</a>
+    </nav>
+    <div class="auth-links">
+      <!-- Кнопки для входа и регистрации -->
+      <a href="login.html" id="nav-login" style=" text-decoration: none;">Вход</a>
+      <a href="register.html" id="nav-register" style=" text-decoration: none;">Регистрация</a>
+      <!-- Ссылка для входа администратора, если нужно -->
+      <a href="login.html" id="nav-admin" style=" text-decoration: none;">Админ</a>
+    </div>
+  </header>
+
+  <!-- Содержимое страницы -->
+  <h2 class="main-title">Каталог</h2>
+    
+    <!-- Блок сортировки -->
+    <div class="sorting-block">
+      <h3 id="sortirovochka">Сортировка</h3>
+      <ul>
+        <li><a href="#" onclick="filterCatalog('all'); return false;" class="sort-btn active">Все товары</a></li>
+        <li><a href="#" onclick="filterCatalog('твердые сыры'); return false;" class="sort-btn">Твердые сыры</a></li>
+        <li><a href="#" onclick="filterCatalog('мягкие сыры'); return false;" class="sort-btn">Мягкие сыры</a></li>
+        <!-- <li><a href="#" onclick="filterCatalog('сыры с плесенью'); return false;" class="sort-btn">Сыры с плесенью</a></li>
+        <li><a href="#" onclick="filterCatalog('сыры на козьем молоке'); return false;" class="sort-btn">Сыры на козьем молоке</a></li> -->
+        <li><a href="#" onclick="filterCatalog('полутвердые сыры'); return false;" class="sort-btn">Полутвердые сыры</a></li>
+      </ul>
+    </div>
+  
+    <!-- Контейнер для карточек товаров -->
+    <div class="product-container">
+      <div id="catalog-cards" class="product-cards"></div>
+    </div>
+
+    <!-- Модальное окно -->
+    <div id="product-modal" class="modal">
+      <div class="modal-content">
+        <span id="modal-close" class="modal-close">&times;</span>
+        <img src="" alt="" class="modal-image">
+        <div class="modal-text">
+          <div class="modal-header">
+            <h2 class="modal-title"></h2>
+            <!-- Новая кнопка‑сердечко -->
+            <button id="modal-fav-btn" class="favorite-btn modal-fav-btn" data-id="">
+              &#10084;
+            </button>
+          </div>
+          <div class="modal-weight">100 гр</div>
+          <p class="modal-desc"></p>
+          <div class="modal-price"></div>
+          <div class="modal-quantity">
+            <button class="qty-btn" onclick="changeModalQty(-1)">−</button>
+            <div class="qty-value" id="modal-qty">100</div>
+            <button class="qty-btn" onclick="changeModalQty(1)">+</button>
+            <div class="qty-label">грамм</div>
+          </div>
+          <button class="modal-add-btn" onclick="addModalToCart()">Добавить в корзину</button>
+        </div>
+      </div>
+    </div>
+    
+    
+  
+  <div id="notification" class="notification"></div>
+
+  <!-- Подвал (footer) -->
+  <footer class="site-footer">
+    <div class="footer-inner">
+    <div class="footer-column footer-left">
+      <a href="index.html">
+        <img src="images/logo.png" alt="Логотип Skavysh" class="footer-logo">
+      </a>
+      <p class="footer-copy">
+        Интернет‑магазин сыров «Сыроварня Сазоновых»<br>
+        © 2022–2025 Все права защищены
+      </p>
+    </div>
+  
+    <div class="footer-column footer-center">
+      <h4 class="footer-title">Магазин</h4>
+      <ul class="footer-nav">
+        <li><a href="index.html">Главная</a></li>
+        <li><a href="catalog.html">Каталог</a></li>
+        <li><a href="about.html">О нас</a></li>
+      </ul>
+    </div>
+  
+    <div class="footer-right">
+  <div class="contacts-wrapper">
+    <h4 class="footer-title">Контакты</h4>
+    <p class="footer-contacts">
+      д. Раскаты, ул. Песчаная 18<br>
+      Пн–Пт 10:00–20:00, Сб-Вс 10:00–18:00<br>
+      +7 (923) 281‑38‑88<br>
+      <a href="mailto:sazonov_cheese@mail.ru">sazonov_cheese@mail.ru</a>
+    </p>
+    <div class="footer-social">
+      
+      <a href="https://vk.com/yarkosttt" target="_blank"><img src="images/soc2.png" alt=""/></a>
+      <a href="https://t.me/Darina_Ekaterina" target="_blank"><img src="images/soc3.png" alt=""/></a>
+    </div>
+  </div>
+</div>
+
+  </div>
+  </footer>
+
+  
+  <script>
+    document.addEventListener("DOMContentLoaded", () => {
+      renderCatalogCards("catalog-cards");
+    });
+  </script>
+  <script src="js/script.js"></script>
+</body>
+</html>
